@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <style>
+        #font
+        {
+            width: 200px;
+            height: 200px;
+            background-image: url("face.png");
+            background-size: cover;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #font > #text
+        {
+            display: inline-block;
+            padding-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <part>
+        <sbp>
+            Idée carrément volée de <a href="https://twitter.com/PetitPiedDessin/status/1222916631325827074?s=19">ce tweet</a> de <a href="https://twitter.com/PetitPiedDessin?s=09">@PetitPiedDessin sur Twitter</a>.
+        </sbp>
+    </part>
+    <part>
+        <sbp>
+            <sp>
+                <label for="emo">Décrivez une émotion</label><br />
+                <input id="emo" type="text" />
+            </sp>
+            <sp>
+                <button onclick="draw()">Dessiner automatiquement</button>
+            </sp>
+        </sbp>
+    </part>
+    <part>
+        <sp>
+            <div id="font">
+                <div id="text"></div>
+            </div>
+        </sp>
+    </part>
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script>
+        function getEmo() {
+            return $("#emo")[0].value;
+        }
+        
+        function setText(txt) {
+            elemFont = $("#font")[0];
+            elemText = $("#text")[0];
+
+            elemText.style.fontSize = "";
+            elemFont.style.backgroundImage = "url(\"voidface.png\")";
+            elemText.innerText = txt;
+            elemText.style.fontSize = "" + (100 / elemText.offsetWidth) + "em";
+        }
+        
+        function draw() {
+            emo = getEmo();
+            if(emo == "")
+                setText("(rien)");
+            else
+                setText(emo);
+        }
+
+    </script>
+</body>
+</html>
